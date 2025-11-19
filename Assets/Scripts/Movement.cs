@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
     [SerializeField] InputAction thrust;
     [SerializeField] float speed = 10f;
     [SerializeField] InputAction rotation;
+    [SerializeField] float rotationStrenght = 10f;
 
     Rigidbody rb;
 
@@ -32,6 +33,7 @@ public class Movement : MonoBehaviour
         if (thrust.IsPressed())
         {
             rb.AddRelativeForce(Vector3.up * speed * Time.fixedDeltaTime);
+            
         }
     }
 
@@ -42,12 +44,19 @@ public class Movement : MonoBehaviour
 
         if (rotationInput < 0f)
         {
-            transform.Rotate(Vector3.forward);
+            ApplyRotation(1);
         }
         else if (rotationInput > 0f)
         {
-            transform.Rotate(Vector3.back);
+            ApplyRotation(-1);
         }
 
+    }
+
+    private void ApplyRotation(float rotationThisFrame)
+    {
+        rb.freezeRotation = true; // freezing rotation so we can manually rotate
+        transform.Rotate(Vector3.forward * rotationStrenght * rotationThisFrame * Time.fixedDeltaTime);
+        rb.freezeRotation = false; // unfreezing rotation so the physics system can take over
     }
 }
