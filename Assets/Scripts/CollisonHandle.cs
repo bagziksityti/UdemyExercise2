@@ -12,19 +12,31 @@ public class CollisonHandle : MonoBehaviour
                 Debug.Log("This thing is friendly");
                 break;
             case "Finish":
-                Debug.Log("You win!");
+                LoadNextLevel();
+           
+                    Debug.Log("You win!");
                 break;
-            case "fueld":
-                Debug.Log("Ybumped to me wy");
-                break;
+            
             default:
-                ReloadLevel(); 
+                ReloadLevel();              
                 Debug.Log("You died!");
                 break;
         }
 
     }
-    void ReloadLevel()
+    void LoadNextLevel()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        int nextScene = currentScene + 1;
+
+
+        if (nextScene == SceneManager.sceneCountInBuildSettings)
+        {
+            nextScene = 0;
+        }
+        SceneManager.LoadScene(nextScene);
+    }
+    void ReloadLevel()                                          // just loads the current level
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene);
