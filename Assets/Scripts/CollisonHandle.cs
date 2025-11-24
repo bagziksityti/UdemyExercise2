@@ -6,18 +6,34 @@ using UnityEngine.SceneManagement;
 
 public class CollisonHandle : MonoBehaviour
 {
-    [SerializeField] float delayTime = 1f;
+    [SerializeField] float delayTime = 2f;
+    [SerializeField] AudioClip crashing;
+    [SerializeField] AudioClip finishing;
+
+    AudioSource audioSource;
+    bool IsControllable = true;
+
+
+    private void Start()
+    {
+             
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnCollisionEnter(Collision collision)
-    {   
-        switch (collision.gameObject.tag)
+    {
+        if (!IsControllable) // if we are not controllable do not process collisions
+        {
+            return;
+        }
+
+        switch (collision.gameObject.tag)               // Check the tag of the object we hit
         {
             case "Friendly":            // if it hits friendly tags
                 Debug.Log("This thing is friendly");
                 break;
             case "Finish":
-                LoadNextLevel();
-           
+                StartFinishSequance();      // if it hits finish tags
                     Debug.Log("You win!");
                 break;
             
@@ -31,13 +47,20 @@ public class CollisonHandle : MonoBehaviour
 
     void StartFinishSequance()
     {
-        // to do add sfx and particles
+        // to do add particles
+        IsControllable = false;
+        audioSource.Stop();
+        audioSource.PlayOneShot(finishing);
         GetComponent<Movement>().enabled = false;       // turn off movement script on finish
         Invoke("LoadNextLevel", delayTime);
+        
     }
     void StartCrashSequance()
     {
-        // to do add sfx and particles
+        // to do add particles
+        IsControllable = false;
+        audioSource.Stop();
+        audioSource.PlayOneShot(crashing);
         GetComponent<Movement>().enabled = false;       // turn off movement script on crash
         Invoke("ReloadLevel", delayTime);
 
@@ -61,6 +84,7 @@ public class CollisonHandle : MonoBehaviour
         SceneManager.LoadScene(currentScene);
     }
 
+    
 
 
 }

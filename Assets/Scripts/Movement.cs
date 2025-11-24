@@ -8,20 +8,21 @@ public class Movement : MonoBehaviour
     [SerializeField] float speed = 10f;
     [SerializeField] InputAction rotation;
     [SerializeField] float rotationStrenght = 10f;
+    [SerializeField] AudioClip MainEngline;
+    
 
-
-    Rigidbody rb;
+    Rigidbody rb;           // class variable for rigidbody 
     AudioSource audioSource;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();          // getting reference to the rigidbody ... audio source
         audioSource = GetComponent<AudioSource>();
     }
     private void OnEnable()
     {
-        thrust.Enable();
-        rotation.Enable();
+        thrust.Enable();                // Input Action is disabled by default so we need to enable it
+        rotation.Enable();              
     }
     private void FixedUpdate()
     {
@@ -31,15 +32,15 @@ public class Movement : MonoBehaviour
 
     }
 
-    private void ProcessTrhust()
+    private void ProcessTrhust()     
     {
        
-        if (thrust.IsPressed())
+        if (thrust.IsPressed())         // thrust.ReadValue<float>() > 0f (input action)
         {
-            rb.AddRelativeForce(Vector3.up * speed * Time.fixedDeltaTime);
+            rb.AddRelativeForce(Vector3.up * speed * Time.fixedDeltaTime);   // adding force relative to the object
             if (!audioSource.isPlaying)
             {
-                audioSource.Play();
+                audioSource.PlayOneShot(MainEngline);   // play the sound PlayOneShot does not interrupt itself
             }
         }
         else
