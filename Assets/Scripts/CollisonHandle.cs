@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,8 @@ public class CollisonHandle : MonoBehaviour
     [SerializeField] float delayTime = 2f;
     [SerializeField] AudioClip crashing;
     [SerializeField] AudioClip finishing;
+    [SerializeField] ParticleSystem finishingParticles;
+    [SerializeField] ParticleSystem crashingParticles;
 
     AudioSource audioSource;
     bool IsControllable = true;
@@ -51,6 +54,7 @@ public class CollisonHandle : MonoBehaviour
         IsControllable = false;
         audioSource.Stop();
         audioSource.PlayOneShot(finishing);
+        finishingParticles.Play();
         GetComponent<Movement>().enabled = false;       // turn off movement script on finish
         Invoke("LoadNextLevel", delayTime);
         
@@ -61,6 +65,7 @@ public class CollisonHandle : MonoBehaviour
         IsControllable = false;
         audioSource.Stop();
         audioSource.PlayOneShot(crashing);
+        crashingParticles.Play();
         GetComponent<Movement>().enabled = false;       // turn off movement script on crash
         Invoke("ReloadLevel", delayTime);
 
