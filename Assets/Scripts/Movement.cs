@@ -40,20 +40,34 @@ public class Movement : MonoBehaviour
        
         if (thrust.IsPressed())         // thrust.ReadValue<float>() > 0f (input action)
         {
-            rb.AddRelativeForce(Vector3.up * speed * Time.fixedDeltaTime);   // adding force relative to the object
-            if (!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(MainEngline);   // play the sound PlayOneShot does not interrupt itself
-            }
-            if (!mainEngineParticles.isPlaying)
-            {
-                mainEngineParticles.Play();
-            }
+            StartThrusting();
         }
         else
         {
-            audioSource.Stop();
+            StopThrusting();
         }
+    }
+
+    private void StartThrusting()
+    {
+        rb.AddRelativeForce(Vector3.up * speed * Time.fixedDeltaTime);   // adding force relative to the object (new Vector3(0,1,0) * speed * Time.fixedDeltaTime)
+                                                                         // Time.fixedDeltaTime makes it frame rate independent
+
+
+
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(MainEngline);   // play the sound PlayOneShot does not interrupt itself 
+        }
+        if (!mainEngineParticles.isPlaying)
+        {
+            mainEngineParticles.Play();
+        }
+    }
+    private void StopThrusting()
+    {
+        audioSource.Stop();
+        mainEngineParticles.Stop();
     }
 
     private void ProcessRotation()
@@ -63,35 +77,48 @@ public class Movement : MonoBehaviour
 
         if (rotationInput < 0f)
         {
-            ApplyRotation(1);
-            if (!rightThrustParticles3.isPlaying)
-            {
-                leftThrustParticles2.Stop();
-                rightThrustParticles3.Play();
-            }
+            RotateRight();
         }
         else if (rotationInput > 0f)
         {
-            ApplyRotation(-1);
-            if (!leftThrustParticles2.isPlaying)
-            {
-                rightThrustParticles3.Stop();
-                leftThrustParticles2.Play();
-            }
+            RotateLeft();
         }
         else
         {
-             rightThrustParticles3.Stop();
-            leftThrustParticles2.Stop();
+            StopRotating();
         }
 
+    }
+    private void RotateRight()
+    {
+        ApplyRotation(1);
+        if (!rightThrustParticles3.isPlaying)
+        {
+            leftThrustParticles2.Stop();
+            rightThrustParticles3.Play();
+        }
+    }
+    private void RotateLeft()
+    {
+        ApplyRotation(-1);
+        if (!leftThrustParticles2.isPlaying)
+        {
+            rightThrustParticles3.Stop();
+            leftThrustParticles2.Play();
+        }
+    }
+
+    private void StopRotating()
+    {
+        rightThrustParticles3.Stop();
+        leftThrustParticles2.Stop();
     }
 
     private void ApplyRotation(float rotationThisFrame)
     {
-        rb.freezeRotation = true; // freezing rotation so we can manually rotate
+       rb.freezeRotation = true; // freezing rotation so we can manually rotate
         transform.Rotate(Vector3.forward * rotationStrenght * rotationThisFrame * Time.fixedDeltaTime);
-        rb.freezeRotation = false; // unfreezing rotation so the physics system can take over
+        rb.freezeRotation = false;  // unfreezing rotation so the physics system can take over
     }
 
     

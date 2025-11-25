@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 
@@ -15,6 +16,7 @@ public class CollisonHandle : MonoBehaviour
 
     AudioSource audioSource;
     bool IsControllable = true;
+    bool isCollidable = true;
 
 
     private void Start()
@@ -22,10 +24,27 @@ public class CollisonHandle : MonoBehaviour
              
         audioSource = GetComponent<AudioSource>();
     }
+    private void Update()
+    {
+        RespondToDebugKeys();
+    }
+    void RespondToDebugKeys()
+    {
+            if (Keyboard.current.lKey.wasPressedThisFrame)         // L to load next level
+        {
+            LoadNextLevel();
+        }
+        else if (Keyboard.current.cKey.wasPressedThisFrame)     // C to toggle collision
+        {
+            isCollidable = !isCollidable;     // toggle the boolean value
+            Debug.Log("C key pressed");
+
+        }
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!IsControllable) // if we are not controllable do not process collisions
+        if (!IsControllable || !isCollidable) // if we are not controllable OR not Collidable do not process collisions
         {
             return;
         }
@@ -37,7 +56,7 @@ public class CollisonHandle : MonoBehaviour
                 break;
             case "Finish":
                 StartFinishSequance();      // if it hits finish tags
-                    Debug.Log("You win!");
+                Debug.Log("You win!");
                 break;
             
             default:                    // if it hits anything else it dies
