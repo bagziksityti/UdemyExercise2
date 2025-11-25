@@ -128,6 +128,9 @@ MonoBehaviour:
     m_Flags: 0
   rotationStrenght: 133.5
   MainEngline: {fileID: 8300000, guid: 374fa6011865d544b97a48b91353ba13, type: 3}
+  mainEngineParticles: {fileID: 7297739224042026228}
+  leftThrustParticles2: {fileID: 1382862318600997174}
+  rightThrustParticles3: {fileID: 3355283848995221648}
 --- !u!54 &5996807215671405932
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -472,6 +475,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 771087676723270698, guid: d4b06ebeeaf0ac044aeed997d98443c2, type: 3}
   m_PrefabInstance: {fileID: 1958463181135206228}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1382862318600997174 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 584678573886053986, guid: d4b06ebeeaf0ac044aeed997d98443c2, type: 3}
+  m_PrefabInstance: {fileID: 1958463181135206228}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2777998533028327154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -532,6 +540,11 @@ PrefabInstance:
 --- !u!4 &3188015112354020056 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 771087676723270698, guid: d4b06ebeeaf0ac044aeed997d98443c2, type: 3}
+  m_PrefabInstance: {fileID: 2777998533028327154}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3355283848995221648 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 584678573886053986, guid: d4b06ebeeaf0ac044aeed997d98443c2, type: 3}
   m_PrefabInstance: {fileID: 2777998533028327154}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5724140763719699253
@@ -653,11 +666,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 198100719057022332, guid: a3553fd250eb92d4091bebde350c6739, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198100719057022332, guid: a3553fd250eb92d4091bebde350c6739, type: 3}
+      propertyPath: lengthInSec
+      value: 0.59
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3553fd250eb92d4091bebde350c6739, type: 3}
+--- !u!198 &7297739224042026228 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198100719057022332, guid: a3553fd250eb92d4091bebde350c6739, type: 3}
+  m_PrefabInstance: {fileID: 7492033358676957576}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7487376287933316796 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4940884351362868, guid: a3553fd250eb92d4091bebde350c6739, type: 3}

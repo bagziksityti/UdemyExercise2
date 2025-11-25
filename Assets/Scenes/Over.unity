@@ -1298,38 +1298,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8608250752879506480, guid: 37e1e817d65c779469f3d0cc93fb1cc3, type: 3}
-      propertyPath: mainEngineParticles
-      value: 
-      objectReference: {fileID: 4125996143181911157}
-    - target: {fileID: 8608250752879506480, guid: 37e1e817d65c779469f3d0cc93fb1cc3, type: 3}
-      propertyPath: leftThrustParticles2
-      value: 
-      objectReference: {fileID: 4125996143181911156}
-    - target: {fileID: 8608250752879506480, guid: 37e1e817d65c779469f3d0cc93fb1cc3, type: 3}
-      propertyPath: rightThrustParticles3
-      value: 
-      objectReference: {fileID: 4125996143181911155}
+    - target: {fileID: 5996807215671405932, guid: 37e1e817d65c779469f3d0cc93fb1cc3, type: 3}
+      propertyPath: m_Constraints
+      value: 56
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37e1e817d65c779469f3d0cc93fb1cc3, type: 3}
---- !u!198 &4125996143181911155 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3355283848995221648, guid: 37e1e817d65c779469f3d0cc93fb1cc3, type: 3}
-  m_PrefabInstance: {fileID: 4125996143181911154}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &4125996143181911156 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1382862318600997174, guid: 37e1e817d65c779469f3d0cc93fb1cc3, type: 3}
-  m_PrefabInstance: {fileID: 4125996143181911154}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &4125996143181911157 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7297739224042026228, guid: 37e1e817d65c779469f3d0cc93fb1cc3, type: 3}
-  m_PrefabInstance: {fileID: 4125996143181911154}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
