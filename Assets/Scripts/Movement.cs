@@ -50,6 +50,11 @@ public class Movement : MonoBehaviour
 
     private void StartThrusting()
     {
+        NewMethod();
+    }
+
+    private void NewMethod()
+    {
         rb.AddRelativeForce(Vector3.up * speed * Time.fixedDeltaTime);   // adding force relative to the object (new Vector3(0,1,0) * speed * Time.fixedDeltaTime)
                                                                          // Time.fixedDeltaTime makes it frame rate independent
 
@@ -64,10 +69,13 @@ public class Movement : MonoBehaviour
             mainEngineParticles.Play();
         }
     }
+
     private void StopThrusting()
     {
         audioSource.Stop();
         mainEngineParticles.Stop();
+        leftThrustParticles2.Stop();
+        rightThrustParticles3.Stop();
     }
 
     private void ProcessRotation()
